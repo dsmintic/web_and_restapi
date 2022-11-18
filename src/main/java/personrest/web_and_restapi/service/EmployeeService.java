@@ -2,6 +2,8 @@ package personrest.web_and_restapi.service;
 
 import personrest.web_and_restapi.model.Employee;
 
+import java.util.List;
+
 public interface EmployeeService {
 
     Employee saveEmployee (Employee employee);
@@ -11,5 +13,7 @@ public interface EmployeeService {
     void deleteEmployeeById (long id);
 
     void deleteByPersonId (long personId);
+
+    List<Employee> getAllEmployees();
 
 }

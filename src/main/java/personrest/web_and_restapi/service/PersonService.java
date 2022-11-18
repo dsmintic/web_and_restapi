@@ -25,5 +25,6 @@ public interface PersonService {
     List<Person> getPersonIsActive (boolean active);
 
     void deleteAllPersons();
+    boolean existsPersonById(long id);
 
 }

@@ -90,13 +90,15 @@ public class Person {
         this.address = address;
     }
 
-    public boolean Active() {
+    public boolean getActive() {
         return active;
     }
 
     public void setActive(boolean active) {
         this.active = active;
     }
+
+
 
     @Override
     public String toString() {

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management System</title>
+</head>
+</head>
+<body>
+<h1>Employee Management System</h1>
+<h2>Employee List</h2>
+<hr>
+<a th:href="@{/newEmployeeForm}">ADD NEW EMPLOYEE</a>
+<p th:if="${listOfEmployees.size() < 1}">
+    <span>There's no employees</span>
+</p>
+<hr>
+
+<table th:unless="${listOfEmployees.size() < 1}">
+    <th>Employee Number</th>
+    <th>Hire Date</th>
+    <th>Is active</th>
+    <th>Actions</th>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${listOfEmployees}">
+        <td th:text="${employee.employeeNumber}"></td>
+        <td th:text="${employee.hireDate}"></td>
+        <td th:text="${employee.active}"></td>
+        <td>
+            <a th:href="@{/updateEmployeeForm/{id}(id=${employee.id})}">Update</a>
+
+            <a th:data-confirm-delete="|Are you sure you want to delete this employee ${employee.employeeNumber}?|"
+               onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false"
+               th:href="@{/deleteEmployeeForm/{id}(id=${employee.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+<hr>
+<p>© 2022 Mušketiri</p>
+<hr>
+</html>

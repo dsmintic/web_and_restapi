@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Management System</title>
+</head>
+<body>
+<h1>Person Management System</h1>
+<h2>Add New Person</h2>
+<hr>
+<form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post">
+<!--    <div th:object="${person}">-->
+    <input type="text" th:field="*{employeeNumber}" placeholder="Insert employee number">
+    <p th:if="${#fields.hasErrors('employeeNumber')}" th:errors="*{employeeNumber}"></p>
+<!--    </div>-->
+
+    <input type="text" th:field="*{hireDate}" placeholder="Insert hireDate">
+    <p th:if="${#fields.hasErrors('hireDate')}" th:errors="*{hireDate}"></p>
+
+    <label>Is an active employee?</label>
+    <input type="checkbox" name="activePerChk" checked="checked">
+
+    <input type="hidden" th:field="*{id}">
+    <button type="submit">Save Employee</button>
+</form>
+<hr>
+<a th:href="@{/home}">Back to Employee List</a>
+</body>
+<hr>
+<p>© 2022 Mušketiri</p>
+<hr>
+</html>

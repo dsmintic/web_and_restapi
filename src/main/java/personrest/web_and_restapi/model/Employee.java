@@ -28,11 +28,12 @@ public class Employee {
     @OneToOne(fetch = FetchType.LAZY)
     @MapsId
     @JoinColumn(name = "employee_id", nullable = false)
-    private Employee employee;
+    private Person person;
 
 
     public Employee() {
     }
+
 
     public long getId() {
         return id;
@@ -58,12 +59,20 @@ public class Employee {
         this.hireDate = hireDate;
     }
 
-    public boolean isActive() {
+    public boolean getActive() {
         return active;
     }
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
     }
 
     @Override
@@ -75,4 +84,5 @@ public class Employee {
                 ", active=" + active +
                 '}';
     }
+
 }

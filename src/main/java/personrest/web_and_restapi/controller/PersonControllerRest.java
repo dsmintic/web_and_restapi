@@ -25,7 +25,7 @@ public class PersonControllerRest {
     public ResponseEntity<Person> createPerson(@RequestBody Person person) {
 
         try {
-            Person person1 = personService.savePerson(new Person(person.getFirstName(), person.getLastName(), person.getAge(),person.getAddress(), person.Active()));
+            Person person1 = personService.savePerson(new Person(person.getFirstName(), person.getLastName(), person.getAge(),person.getAddress(), person.getActive()));
             return new ResponseEntity<>(person1, HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);

@@ -20,16 +20,16 @@ public class PersonController {
         this.personService = personService;
     }
 
-    @GetMapping("/home")
+    @GetMapping("/homePerson")
     public String personHome(Model model) {
         model.addAttribute("listOfPersons", personService.getAllPersons());
-        return "home";
+        return "/Person/home";
     }
 
     @GetMapping("/newPersonForm")
     public String newPersonForm (Model model){
         model.addAttribute("person", new Person());
-        return "newPerson";
+        return "/Person/newPerson";
     }
 
     @PostMapping("/savePerson")
@@ -37,26 +37,26 @@ public class PersonController {
                                 BindingResult bidingResult,
                                 @RequestParam(required = false) boolean activePerChk) {
         if (bidingResult.hasErrors()) {
-            return "newPerson";
+            return "/Person/newPerson";
         }
 
         person.setActive(activePerChk);
 
         personService.savePerson(person);
-        return "redirect:/home";
+        return "redirect:/Person/home";
     }
 
     @GetMapping("updatePersonForm/{id}")
     public String updatePersonForm (@PathVariable(value = "id") long id, Model model){
         Person person = personService.getPersonById(id);
         model.addAttribute("person", person);
-        return "updatePerson";
+        return "/Person/updatePerson";
     }
 
     @GetMapping("deletePersonForm/{id}")
     public String deletePersonForm (@PathVariable(value = "id") long id){
         personService.deletePersonById(id);
-        return "redirect:/home";
+        return "redirect:/homePerson";
     }
 
 }

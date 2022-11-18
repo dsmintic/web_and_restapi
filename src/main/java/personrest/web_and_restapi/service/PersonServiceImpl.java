@@ -74,4 +74,9 @@ public class PersonServiceImpl implements PersonService{
     public List<Person> getPersonIsActive (boolean active){
         return personRepository.findByActive(active);
     }
+
+    @Override
+    public boolean existsPersonById(long id){
+        return personRepository.existsById(id);
+    }
 }
