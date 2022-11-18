@@ -1,6 +1,7 @@
 package personrest.web_and_restapi.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name = "persons")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Person {
 
     @Id
