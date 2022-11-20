@@ -9,11 +9,9 @@
 <h1>Employee Management System</h1>
 <h2>Employee List</h2>
 <hr>
-<a th:href="@{/newEmployeeForm}">ADD NEW EMPLOYEE</a>
 <p th:if="${listOfEmployees.size() < 1}">
     <span>There's no employees</span>
 </p>
-<hr>
 
 <table th:unless="${listOfEmployees.size() < 1}">
     <th>Employee Number</th>
@@ -36,6 +34,8 @@
     </tr>
     </tbody>
 </table>
+<hr>
+    <a th:href="@{/homePerson}">Back to Person List</a>
 </body>
 <hr>
 <p>© 2022 Mušketiri</p>

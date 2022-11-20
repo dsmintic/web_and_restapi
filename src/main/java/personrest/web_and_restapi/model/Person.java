@@ -39,6 +39,9 @@ public class Person {
     @Column(name="is_active", nullable = false)
     private boolean active;
 
+    @OneToOne(mappedBy = "person", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    private Employee employee;
+
     public Person() {
     }
 
@@ -98,7 +101,13 @@ public class Person {
         this.active = active;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
 
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
 
     @Override
     public String toString() {
@@ -109,6 +118,7 @@ public class Person {
                 ", age=" + age +
                 ", address='" + address + '\'' +
                 ", active=" + active +
+                ", employee=" + employee +
                 '}';
     }
 }

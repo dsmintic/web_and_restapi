@@ -18,6 +18,9 @@
     <input type="text" th:field="*{age}" placeholder="Insert age">
         <p th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></p>
 
+    <input type="text" th:field="*{address}" placeholder="Insert address">
+    <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+
     <label>Is an active person?</label>
     <input type="checkbox" name="activePerChk" checked="checked">
 

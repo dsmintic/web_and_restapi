@@ -8,11 +8,10 @@
 <h1>Person Management System</h1>
 <h2>Add New Person</h2>
 <hr>
-<form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post">
-<!--    <div th:object="${person}">-->
+<form action="#" th:action="@{/saveEmployee/{personId}(personId = ${person.id})}" th:object="${employee}" method="post">
+
     <input type="text" th:field="*{employeeNumber}" placeholder="Insert employee number">
     <p th:if="${#fields.hasErrors('employeeNumber')}" th:errors="*{employeeNumber}"></p>
-<!--    </div>-->
 
     <input type="text" th:field="*{hireDate}" placeholder="Insert hireDate">
     <p th:if="${#fields.hasErrors('hireDate')}" th:errors="*{hireDate}"></p>
@@ -24,7 +23,7 @@
     <button type="submit">Save Employee</button>
 </form>
 <hr>
-<a th:href="@{/home}">Back to Employee List</a>
+<a th:href="@{/homePerson}">Back to Person List</a>
 </body>
 <hr>
 <p>© 2022 Mušketiri</p>

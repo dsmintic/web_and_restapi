@@ -43,7 +43,7 @@ public class PersonController {
         person.setActive(activePerChk);
 
         personService.savePerson(person);
-        return "redirect:/Person/home";
+        return "redirect:/homePerson";
     }
 
     @GetMapping("updatePersonForm/{id}")

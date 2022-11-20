@@ -24,35 +24,34 @@ public class EmployeeController {
         this.personService = personService;
     }
 
-    @Autowired
-
-
     @GetMapping("/homeEmployee")
     public String employeeHome(Model model){
         model.addAttribute("listOfEmployees", employeeService.getAllEmployees());
         return "/Employee/homeEmployee";
     }
 
-    @GetMapping("/newEmployeeForm")
+    @GetMapping("/newEmployee/{id}")
     public String newEmployeeForm (@PathVariable(value = "id") long id, Model model){
         Person person = personService.getPersonById(id);
+
         model.addAttribute("person", person);
         model.addAttribute("employee", new Employee());
         return "/Employee/newEmployee";
     }
 
-    @PostMapping("/saveEmployee")
-    public String saveEmployee (@Valid @ModelAttribute Employee employee,
-                              BindingResult bidingResult,
-                              @RequestParam(required = false) boolean activePerChk) {
+    @PostMapping("/saveEmployee/{personId}")
+    public String saveEmployee (@PathVariable("personId") long id,
+                                @Valid @ModelAttribute Employee employee,
+                                BindingResult bidingResult,
+                                @RequestParam(required = false) boolean activePerChk) {
         if (bidingResult.hasErrors()) {
             return "/Employee/newEmployee";
         }
 
         employee.setActive(activePerChk);
-
+        employee.setPerson(personService.getPersonById(id));
         employeeService.saveEmployee(employee);
-        return "redirect:/Employee/home";
+        return "redirect:/homeEmployee";
     }
 
     @GetMapping("updateEmployeeForm/{id}")
