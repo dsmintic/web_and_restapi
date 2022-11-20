@@ -20,6 +20,7 @@
     <th>Last Name</th>
     <th>Age</th>
     <th>Address</th>
+    <th>Employee Number</th>
     <th>Actions</th>
     </thead>
     <tbody>
@@ -28,6 +29,7 @@
       <td th:text="${person.lastName}"></td>
       <td th:text="${person.age}"></td>
       <td th:text="${person.address}"></td>
+      <td th:text="${person.employee}"></td>
       <td>
         <a th:href="@{/updatePersonForm/{id}(id=${person.id})}">Update</a>
 

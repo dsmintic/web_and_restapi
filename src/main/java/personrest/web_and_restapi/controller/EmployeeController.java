@@ -11,6 +11,7 @@ import personrest.web_and_restapi.service.EmployeeService;
 import personrest.web_and_restapi.service.PersonService;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class EmployeeController {
@@ -26,20 +27,29 @@ public class EmployeeController {
 
     @GetMapping("/homeEmployee")
     public String employeeHome(Model model){
+        model.addAttribute("listOfPersons", personService.getAllPersons());
         model.addAttribute("listOfEmployees", employeeService.getAllEmployees());
         return "/Employee/homeEmployee";
     }
 
     @GetMapping("/newEmployee/{id}")
     public String newEmployeeForm (@PathVariable(value = "id") long id, Model model){
-        Person person = personService.getPersonById(id);
+        Optional<Employee> optional = Optional.ofNullable(employeeService.getEmployeeById(id));
 
-        model.addAttribute("person", person);
-        model.addAttribute("employee", new Employee());
-        return "/Employee/newEmployee";
+        if (optional.isPresent()) {
+            return "/Employee/employeeExists";
+        }else {
+            Person person = personService.getPersonById(id);
+
+            model.addAttribute("person", person);
+            model.addAttribute("employee", new Employee());
+            return "/Employee/newEmployee";
+        }
+
+
     }
 
-    @PostMapping("/saveEmployee/{personId}")
+    @PostMapping("/persons/employee/saveEmployee/{personId}")
     public String saveEmployee (@PathVariable("personId") long id,
                                 @Valid @ModelAttribute Employee employee,
                                 BindingResult bidingResult,

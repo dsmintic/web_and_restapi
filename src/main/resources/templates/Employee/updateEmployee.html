@@ -8,7 +8,7 @@
 <h1>Employee Management System</h1>
 <h2>Update Employee</h2>
 <hr>
-<form action="#" th:action="@{/saveEmployee}" th:object="${employee}" method="post">
+<form action="#" th:action="@{/persons/employee/saveEmployee/{id}(id=${id})}" th:object="${employee}" method="post">
     <input type="text" th:field="*{employeeNumber}" placeholder="Insert Employee Number">
     <p th:if="${#fields.hasErrors('employeeNumber')}" th:errors="*{employeeNumber}"></p>
 
