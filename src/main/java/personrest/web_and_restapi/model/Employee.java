@@ -1,5 +1,6 @@
 package personrest.web_and_restapi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -29,6 +30,10 @@ public class Employee {
     @MapsId
     @JoinColumn(name = "employee_id", nullable = false)
     private Person person;
+
+    @ManyToOne
+    @JoinColumn(name = "department_id", referencedColumnName = "id", nullable = false)
+    private Department department;
 
 
     public Employee() {
@@ -73,6 +78,14 @@ public class Employee {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     @Override
